@@ -11,7 +11,7 @@ test('getbyrole locator', async({page})=>{
 
     const usernameInput= page.getByRole('textbox',{name:'Username'})
 
-await usernameInput.fill("standard_user")  
+await usernameInput.fill("standard_user")   
    
 })
 
