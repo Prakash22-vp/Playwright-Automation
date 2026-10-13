@@ -1,0 +1,60 @@
+PLAYWRIGHT CHEAT SHEET — DAY 86 & 87
+Topic: Multiple Tabs / Windows
+
+1. Create a new tab:
+const newPage = await context.newPage();
+
+2. Open a website in the new tab:
+await newPage.goto('https://www.saucedemo.com/');
+
+3. Capture a tab opened by clicking a link:
+const newPagePromise = context.waitForEvent('page');
+await page.locator('#opentab').click();
+const newPage = await newPagePromise;
+
+4. Get all open tabs:
+const pages = context.pages();
+
+5. Count open tabs:
+console.log(context.pages().length);
+
+6. Access tabs by index:
+const firstTab = pages[0];
+const secondTab = pages[1];
+
+7. Verify number of tabs:
+expect(context.pages()).toHaveLength(2);
+
+8. Verify new tab title:
+await expect(newPage).toHaveTitle('Swag Labs');
+
+9. Verify new tab URL:
+await expect(newPage).toHaveURL('https://www.saucedemo.com/');
+
+10. Interact with elements in new tab:
+await newPage.getByRole('textbox', { name: 'Username' }).fill('standard_user');
+
+11. Close only the new tab:
+await newPage.close();
+
+12. Verify one tab remains:
+expect(context.pages()).toHaveLength(1);
+
+13. Close entire browser context:
+await context.close();
+
+KEY DIFFERENCES:
+context.newPage() — Creates a new page.
+context.waitForEvent('page') — Waits for a new page to open.
+context.pages() — Returns all currently open pages.
+newPage.close() — Closes only the selected page.
+context.close() — Closes the context and all its pages.
+
+REMEMBER:
+page = original page
+newPage = newly opened page
+pages[0] = first page in the array
+pages[1] = second page in the array
+Playwright array indexing starts at 0.
+Use await for asynchronous actions and web-first assertions.
+No await needed for expect(context.pages()).toHaveLength(2).

@@ -1,0 +1,72 @@
+PLAYWRIGHT LOCATORS — CHEAT SHEET
+
+1. getByRole()
+Syntax: page.getByRole('role', { name: 'Name' })
+Example: page.getByRole('button', { name: 'Login' })
+Meaning: Finds an element by role and accessible name.
+
+2. getByText()
+Syntax: page.getByText('text')
+Example: page.getByText('Welcome')
+Meaning: Finds an element by text content.
+
+3. getByLabel()
+Syntax: page.getByLabel('label')
+Example: page.getByLabel('Email Address')
+Meaning: Finds a form control by its associated label.
+
+4. getByPlaceholder()
+Syntax: page.getByPlaceholder('placeholder')
+Example: page.getByPlaceholder('Enter Name')
+Meaning: Finds an input by its placeholder text.
+
+5. getByTestId()
+Syntax: page.getByTestId('test-id')
+Example: page.getByTestId('submit-button')
+Meaning: Finds an element by data-testid by default.
+
+6. locator() — ID
+Syntax: page.locator('#id')
+Example: page.locator('#email')
+Meaning: Finds an element by ID.
+
+7. locator() — Class
+Syntax: page.locator('.class')
+Example: page.locator('.form-control')
+Meaning: Finds elements by class.
+
+8. locator() — Attribute
+Syntax: page.locator('[attribute="value"]')
+Example: page.locator('[placeholder="Enter Email"]')
+Meaning: Finds an element by an HTML attribute.
+
+9. Locator chaining
+Syntax: parentLocator.getByRole('role', { name: 'Name' })
+Example: page.locator('#profile').getByRole('button', { name: 'Edit' })
+Meaning: Finds an element inside a parent section.
+
+10. toHaveCount()
+Syntax: await expect(locator).toHaveCount(n)
+Example: await expect(page.getByRole('button')).toHaveCount(3)
+Meaning: Checks the number of matching elements.
+
+11. first()
+Syntax: locator.first()
+Example: page.getByRole('button').first().click()
+Meaning: Selects the first match.
+
+12. last()
+Syntax: locator.last()
+Example: page.getByRole('button').last().click()
+Meaning: Selects the last match.
+
+13. nth()
+Syntax: locator.nth(index)
+Example: page.getByRole('button').nth(1).click()
+Meaning: Selects by zero-based index; nth(1) is the second match.
+
+QUICK REMINDERS
+# = ID; . = class.
+nth(0) = first; nth(1) = second; nth(2) = third.
+Prefer unique, meaningful locators when possible.
+Use await for asynchronous actions and assertions, not when creating a locator.

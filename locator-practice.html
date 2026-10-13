@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Playwright Locator Practice</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 850px; margin: 30px auto; padding: 0 18px; color: #222; }
+    h1 { margin-bottom: 6px; }
+    .hint { color: #555; margin-bottom: 24px; }
+    section, .panel { border: 1px solid #ccc; border-radius: 10px; padding: 18px; margin: 16px 0; }
+    label { display: block; margin: 12px 0 5px; }
+    input { padding: 9px; width: min(100%, 360px); box-sizing: border-box; }
+    button { padding: 9px 14px; margin: 8px 6px 0 0; cursor: pointer; }
+    .message { background: #f2f5f8; padding: 10px; border-radius: 6px; }
+    #status { font-weight: bold; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <h1>Registration Form</h1>
+  <p class="hint">Practice Playwright locators on this page: roles, text, labels, placeholders, test IDs, CSS selectors, chaining, counts, first, last, and nth.</p>
+
+  <div class="panel">
+    <label for="fullName">Full Name</label>
+    <input id="fullName" placeholder="Enter Name" />
+
+    <label for="email">Email Address</label>
+    <input id="email" type="email" placeholder="Enter Email" />
+
+    <button data-testid="submit-button" id="submitButton" type="button">Submit</button>
+    <p id="registrationMessage">Registration is open</p>
+    <p id="status" aria-live="polite"></p>
+  </div>
+
+  <section id="profile">
+    <h2>Profile Section</h2>
+    <button id="editButton" type="button">Edit</button>
+    <p id="profileStatus">Profile not edited yet.</p>
+  </section>
+
+  <section>
+    <h2>Messages</h2>
+    <div class="message">Welcome to Playwright</div>
+  </section>
+
+  <section id="deleteSection">
+    <h2>Delete Buttons (three matching elements)</h2>
+    <button class="delete-button" type="button">Delete</button>
+    <button class="delete-button" type="button">Delete</button>
+    <button class="delete-button" type="button">Delete</button>
+    <p id="deleteStatus" aria-live="polite">No Delete button clicked yet.</p>
+  </section>
+
+  <script>
+    document.getElementById('submitButton').addEventListener('click', () => {
+      const name = document.getElementById('fullName').value.trim();
+      document.getElementById('status').textContent = name ? `Submitted for ${name}` : 'Please enter your name.';
+    });
+    document.getElementById('editButton').addEventListener('click', () => {
+      document.getElementById('profileStatus').textContent = 'Profile edited.';
+    });
+    document.querySelectorAll('.delete-button').forEach((button, index) => {
+      button.addEventListener('click', () => {
+        document.getElementById('deleteStatus').textContent = `Delete button ${index + 1} clicked.`;
+      });
+    });
+  </script>
+</body>
+</html>
